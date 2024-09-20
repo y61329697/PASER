@@ -1,7 +1,7 @@
 # bash name: run_model.sh
 # description: train and eval the PASER with different parameters
 
-OUT_PATH="./output/checkpoint/cls_SE_LR2e-5LR1e-4_fp16_w2v2mask0.0_dtp/fold1_B16_epoch100_warm0.5"
+OUT_PATH="./output/checkpoint/cls_SE_LR2e-5LR1e-4_fp16_w2v2mask0.0_dtp/fold1_B16_epoch100_warm0.3"
 BATCH_SIZE=16
 FINETUNE="--finetune"
 KPH=1.0
@@ -13,7 +13,7 @@ FOLD=1
 SCHD='fixed'
 KSPK=0.0
 FUSE='concat' # fuse mode: concat, cross, cross_simple, project, gate, bi_linear
-WARM=0.5
+WARM=0.3
 LR=2e-5
 OH=0.0
 ABLATION=-1   # -1 represent no ablation, 0 represent full ablation, 1 represent ablation decoder, 2 represent ablation SE module
