@@ -37,7 +37,7 @@ def read_phoneme_csv(csv_file):
     phoneme_dict = {}
     with open(csv_file, 'r', encoding='utf8') as fin:
         reader = csv.reader(fin)
-        header = next(reader)  # 读取表头
+        header = next(reader)  
         assert header == ['Phoneme', 'ID'], "CSV header must be ['Phoneme', 'ID']"
         
         for row in reader:
@@ -98,9 +98,6 @@ def tokenize(data_path, out_path, mode, symbol_table_path, bpe_model_path, phone
             DataMap[sess_name][i]['tlabel'] = tlabel
 
 
-# Pickle 可以将 Python 对象（如字典、列表、数据框等）序列化成字节流，
-# 并将其保存到文件中。这些对象可以在以后重新加载，并恢复成原始状态，便于数据的持久化存储和传输。
-# Pickle 可以准确的保留文件的原始结构
     with open(out_path, 'wb') as f:
         pickle.dump(DataMap, f)
 

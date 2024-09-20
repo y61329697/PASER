@@ -7,14 +7,12 @@ import random
 
 from dataset.IEMOCAP import IEMOCAP
 
-path = '/data2/yk123/ICASSP2024/dataset/IEMOCAP/iemocap4char.pkl'
-# 设置随机数种子
+path = './dataset/IEMOCAP/iemocap4char.pkl'
 seed = 42
 torch.manual_seed(seed)
 np.random.seed(seed)
 random.seed(seed)
 
-# 创建一个固定种子的随机数生成器
 generator = torch.Generator()
 generator.manual_seed(seed)
 
@@ -26,16 +24,12 @@ class FixedRandomSampler(Sampler):
         self.g.manual_seed(self.seed)
         
     def __iter__(self):
-        # 固定 Python 的 random 和 numpy 的随机种子
         random.seed(self.seed)
         np.random.seed(self.seed)
         
-        # 使用 PyTorch 的随机排列函数
         n = len(self.data_source)
         rand_perm = torch.randperm(n, generator=self.g).tolist()
-        
-        # 输出前五个随机数
-        print(f"前五个随机索引: {rand_perm[:5]}")
+        print(f"First five random indices: {rand_perm[:5]}")
         
         return iter(rand_perm)
     
@@ -63,8 +57,6 @@ def build_loader(batch_size, data_path=path, id_fold=1, use_sampler=False):
         dataloader_train = DataLoader(dataset_train, batch_size=batch_size, collate_fn=dataset_train.collate_fn, sampler=sampler_train, shuffle=False)
     else:
         print('FixedRandom Sampler!')
-        
-        # 生成序列的不同，可能是 generator 的原因目前来看结果相同
         sampler = FixedRandomSampler(dataset_train)
         dataloader_train = DataLoader(dataset_train, batch_size=batch_size, collate_fn=dataset_train.collate_fn, 
                                       sampler=sampler, num_workers=0)

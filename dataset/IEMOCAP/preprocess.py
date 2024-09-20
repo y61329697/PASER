@@ -15,8 +15,6 @@ emotion_id = {'hap': 0, 'ang': 1, 'sad': 2, 'neu': 3, 'exc': 0}
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, default="/Dataset/IEMOCAP", help='path of IEMOCAP dataset')
 parser.add_argument('--prodir', type=str, default=".", help='directory of IEMOCAP process')
-
-# 按五折划分生成数据集pkl文件
 # SessionMap 为{session1:[{text:xxx, label:xxx, audio:xxx}, ...],  ...}
 
 def generate_iemocap4(indir, pikdir, text_dir):
@@ -54,7 +52,6 @@ def generate_iemocap4(indir, pikdir, text_dir):
                             line = f.readline()
                             continue
 
-                        # 按照 emo_evaluation_dir 中的路径读取音频文件
                         # Process audio and label
                         audio, audio_length = utils.load_wav(wav_file_name)
                         utterance_map['audio'] = audio
@@ -64,7 +61,6 @@ def generate_iemocap4(indir, pikdir, text_dir):
                         # Process text
                         pattern = r"{} \[.+\]: (.+)".format(title_name)
                         text_line = re.findall(pattern, text_content)[0]
-                        # 字符串变为大写
                         text_line = text_line.upper()
                         punc = "\[\]\.\,\?\!\-\:\;\""
                         text_line = re.sub(r"[{0}]+".format(punc), " ", text_line)
