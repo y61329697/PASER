@@ -11,7 +11,6 @@ import numpy as np
 config = Wav2Vec2Config()
 model = Wav2Vec2Model(config)
 
-# 五折划分数据集
 def Partition(ith_fold, DataMap, batch_size):
     '''
     Args:
