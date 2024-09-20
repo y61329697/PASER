@@ -15,7 +15,7 @@ emotion_id = {'hap': 0, 'ang': 1, 'sad': 2, 'neu': 3, 'exc': 0}
 parser = argparse.ArgumentParser()
 parser.add_argument('--path', type=str, default="/Dataset/IEMOCAP", help='path of IEMOCAP dataset')
 parser.add_argument('--prodir', type=str, default=".", help='directory of IEMOCAP process')
-# SessionMap 为{session1:[{text:xxx, label:xxx, audio:xxx}, ...],  ...}
+# SessionMap:{session1:[{text:xxx, label:xxx, audio:xxx}, ...],  ...}
 
 def generate_iemocap4(indir, pikdir, text_dir):
     """
