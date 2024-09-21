@@ -3,8 +3,8 @@ import csv
 from nltk.corpus import cmudict
 from collections import OrderedDict
 
-cmu_dict = cmudict.dict()
 
+cmu_dict = cmudict.dict()
 def generate_cmudict2id(save_path, reserve_token: list):
     # nltk.download('cmudict')
     cmu_dict = nltk.corpus.cmudict.dict()

@@ -33,6 +33,7 @@ def read_symbol_table(symbol_table_file, mode='bpe'):
                 symbol_table[arr[0]] = int(arr[1])
     return symbol_table
 
+
 def read_phoneme_csv(csv_file):
     phoneme_dict = {}
     with open(csv_file, 'r', encoding='utf8') as fin:
