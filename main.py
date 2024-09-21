@@ -371,7 +371,7 @@ def solve(args, id_fold=1):
     optimizer_spk = None
     scheduler_spk = None
     warmup_ratio = args.warmup_ratio
-    total_steps = len(train_loader) * args.n_epoch  # 总训练步数
+    total_steps = len(train_loader) * args.n_epoch
     warmup_steps = int(total_steps * warmup_ratio)
     
     decoder_params = list(model.phoneme_dec.parameters())
@@ -381,11 +381,11 @@ def solve(args, id_fold=1):
     # so set a large learning rate for decoder
     optimizer = optim.AdamW([
         {'params': other_params, 'lr': args.learning_rate},
-        {'params': decoder_params, 'lr': args.learning_rate * 5}
+        {'params': decoder_params, 'lr': args.learning_rate * 10}
     ], betas=(0.9, 0.999), eps=1e-8)
     
     optimizer_other = optim.AdamW([{'params': other_params, 'lr': args.learning_rate}], betas=(0.9, 0.999), eps=1e-8)
-    optimizer_decoder = optim.AdamW([{'params': decoder_params, 'lr': args.learning_rate * 5}], betas=(0.9, 0.999), eps=1e-8)
+    optimizer_decoder = optim.AdamW([{'params': decoder_params, 'lr': args.learning_rate * 10}], betas=(0.9, 0.999), eps=1e-8)
 
     if args.spk_weight > 0.0 and args.fuse_mode == 'concat':
         all_parameters = set(model.parameters())
