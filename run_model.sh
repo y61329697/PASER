@@ -1,11 +1,11 @@
 # bash name: run_model.sh
 # description: train and eval the PASER with different parameters
 
-OUT_PATH="./output/checkpoint/cls_SE_LR2e-5LR1e-4_fp16_w2v2mask0.0_dtp/fold1_B16_epoch100_warm0.3"
+OUT_PATH="./output/checkpoint"
 BATCH_SIZE=16
 FINETUNE="--finetune"
 KPH=1.0
-GPU=1
+GPU=2
 SEED=42
 N_EPOCH=100   # you can train more epochs to get better performance like 200 epochs
 MODE='mean'   # pool mode: mean, att, att_fusion, t_att, multi_trans
